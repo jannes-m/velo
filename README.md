@@ -4,17 +4,15 @@
 velo
 ====
 
-velo is an R package which provides bicycle-related calculations which are frequently used by bike enthusiasts. So far, many of these functions are spread over the web and/or do not exist
+velo is an R package which provides bicycle-related calculations which are frequently used by bike enthusiasts. However, many of these functions are spread over the web and/or do not exist. The main goals of the velo-package are:
 
 -   Make available the most important bicycle-related calculations in one place.
 
--   In the future the implemented functions should be interactively usable in RShiny Apps.
+-   In the future the implemented functions should be interactively usable with RShiny Apps.
 
-You can install:
+You can install the latest development version from github with
 
--   the latest development version from github with
-
-    ``` {.R}
+    ```R
     if (packageVersion("devtools") < 1.6) {
       install.packages("devtools")
     }
