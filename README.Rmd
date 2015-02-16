@@ -31,7 +31,3 @@ devtools::install_github("hadley/lazyeval")
 devtools::install_github("jannes-m/velo")
 ```
 
-Try another chunk:
-```{r}
-summary(1:200)
-```

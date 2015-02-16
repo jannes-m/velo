@@ -19,11 +19,3 @@ if (packageVersion("devtools") < 1.6) {
 devtools::install_github("hadley/lazyeval")
 devtools::install_github("jannes-m/velo")
 ```
-
-Try another chunk:
-
-``` {.r}
-summary(1:200)
-#>    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-#>    1.00   50.75  100.50  100.50  150.20  200.00
-```
