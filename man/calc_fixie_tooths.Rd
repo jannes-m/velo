@@ -4,17 +4,23 @@
 \alias{calc_fixie_tooths}
 \title{Front and rear gear tooths (Fixie).}
 \usage{
-calc_fixie_tooths(ratio = 2.8, tol = 0)
+calc_fixie_tooths(ratio = 2.8, top = 5)
 }
 \arguments{
 \item{ratio}{The desired gear ratio given as a positive numeral.}
 
-\item{tol}{Tolerance indicating the range around which the desired gear ratio
-might deviate (default: 0).}
+\item{top}{An integer indicating the maximal number of rows which should be
+returned by the function.}
 }
 \value{
-The function returns a dataframe with the ten best results in
-  descending order.
+The function returns a dataframe with three columns:
+\enumerate{
+ \item{\strong{front} The optimal number of front gear tooths.}
+ \item{\strong{rear} The optimal number of rear gear tooths.}
+ \item{\strong{ratio} The gear ratio.}
+ }
+ The function displays all possible combinations in descending order which range +/- 0.1
+  of the desired gear ratio.
 }
 \description{
 \code{calc_fixie_tooths} calculates the optimal number of front

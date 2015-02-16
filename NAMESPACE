@@ -2,6 +2,6 @@
 
 export(calc_fixie_tooths)
 importFrom(dplyr,arrange)
-importFrom(dplyr,filter)
-importFrom(dplyr,mutate)
+importFrom(dplyr,filter_)
+importFrom(dplyr,mutate_)
 importFrom(dplyr,select)
