@@ -3,9 +3,11 @@ Type: Package
 Title: An R package for bicycle-related calculations
 Version: 1.0
 Date: 2015-02-16
-Author: Who wrote it
-Maintainer: Who to complain to <yourfault@somewhere.net>
-Description: More about what it does (maybe more than one line)
-License: What license is it under?
-Depends: R(>= 3.1.0)
+Author: Jannes Muenchow
+Maintainer: <malnamlaja@gmx.det>
+Description: velo is an R package which provides bicycle-related calculations
+   which are frequently used by bike enthusiasts. However, many of these 
+   functions are spread over the web and/or do not exist.
+License: GPL
+Depends: R(>= 3.0.2)
 Imports: dplyr
