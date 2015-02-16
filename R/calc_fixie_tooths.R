@@ -9,7 +9,7 @@
 #' @return The function returns a dataframe with the ten best results in 
 #'   descending order.
 #' @author Jannes Muenchow
-#' @importFrom dplyr mutate filter arrange select
+#' @importFrom dplyr mutate_ filter_ arrange select
 #' @export 
 #' @keywords Single speed bike, Fixie
 #' @examples
@@ -28,14 +28,16 @@ calc_fixie_tooths <- function(ratio = 2.8, tol = 0) {
   d <- expand.grid("front" = front, "rear" = rear)
   # find the transmission ratio for each combination
   d <- mutate(d, ratio = front / rear)
-  my_min <- ratio - tol
-  my_max <- ratio + tol
-  opt <- ratio
-  filter(d, ratio >= my_min & ratio <= my_max) %>%
+  # build the condition
+  cond <- interp(~ ratio >= min & ratio <= max, 
+                 min = ratio - tol, max = ratio + tol)
+  
+  # subset according to the condition
+  filter_(d, cond) %>%
     # round your gear transmission to the third decimal place
     mutate(ratio = round(ratio, 3)) %>%
-    # subtract from your output the desired ratio
-    mutate(ratio_2 = ratio - opt) %>%
+    # subtract the desired ratio from your output
+    mutate_(ratio_2 = interp(~ratio - opt, opt = ratio)) %>%
     # and order the result by the lowest difference
     arrange(abs(ratio_2)) %>%
     select(-ratio_2) %>%
