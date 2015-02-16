@@ -23,10 +23,15 @@ The main goals of the velo-package are:
 
 You can install the latest development version from github with
 
-    ```{r, eval = FALSE}
-    if (packageVersion("devtools") < 1.6) {
-      install.packages("devtools")
+```{r, eval = FALSE}
+if (packageVersion("devtools") < 1.6) {
+    install.packages("devtools")    
     }
-    devtools::install_github("hadley/lazyeval")
-    devtools::install_github("jannes-m/velo")
-    ```
+devtools::install_github("hadley/lazyeval")
+devtools::install_github("jannes-m/velo")
+```
+
+Try another chunk:
+```{r}
+summary(1:200)
+```
