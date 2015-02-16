@@ -12,7 +12,7 @@ velo is an R package which provides bicycle-related calculations which are frequ
 
 You can install the latest development version from github with
 
-    ```R
+    ``` r
     if (packageVersion("devtools") < 1.6) {
       install.packages("devtools")
     }
