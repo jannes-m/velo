@@ -4,8 +4,6 @@
 velo
 ====
 
-[![Build Status](https://travis-ci.org/hadley/dplyr.png?branch=master)](https://travis-ci.org/hadley/dplyr)
-
 velo is an R package which provides bicycle-related calculations which are frequently used by bike enthusiasts. However, many of these functions are spread over the web and/or do not exist. The main goals of the velo-package are:
 
 -   Make available the most important bicycle-related calculations in one place (well, so far, there is just one function, ...).
