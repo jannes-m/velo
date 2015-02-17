@@ -1,13 +1,14 @@
 #' @title Find multiplier
 #' @description Find lowest possible multiplier which yields an integer when
 #'   multiplied with a numeric.
-#' param x a numeric vector
-#' importFrom stringr str_split
-#' importFrom dplyr %>%
-#' importFrom conf.design factorize
+#' @param x a numeric vector
+#' @importFrom stringr str_split
+#' @importFrom dplyr %>%
+#' @importFrom conf.design factorize
 #' @examples
 #' find_multiplier(2.25)
 #' find_multiplier(8.245)
+#' # x can also be a numeric vector of length > 1
 #' find_multiplier(c(2.25, 8.245, 2.1))
 #' @export
 
@@ -51,8 +52,13 @@ find_multiplier <- function(x) {
   # find the lowest possible integer
   vapply(seq_along(denom), function(i) {
     # find prime factors which p and denom have in common
-    tmp <- unlist(lapply(c(denom[i], p[i]), unique))
-    int <- unique(tmp[duplicated(tmp)])
+    #     tmp <- unlist(lapply(c(denom[i], p[i]), unique))
+    #     int <- unique(tmp[duplicated(tmp)])
+    suppressWarnings(
+      tmp <- is.element(denom[[i]], p[[i]]) &
+        is.element(p[[i]], denom[[i]])
+    )
+    int <- denom[[i]][tmp]
     # calculate the lowest possible value which yields an integer when 
     # multiplied with x
     if (p[[i]][1] != 0) {
@@ -60,7 +66,8 @@ find_multiplier <- function(x) {
     } else {
       1
     }    
-  }, numeric(1))   
+  }, numeric(1))
+
 }
  
 
@@ -68,11 +75,17 @@ find_multiplier <- function(x) {
 #' @description Simplify the gear ratio to the smallest whole number ratio.
 #' @param front The number of chainring teeth.
 #' @param  rear The number of cog teeths.
-#' @return The function returns a vector indicating the number of skid patches
+#' @return The function returns a vector specifying the number of skid patches
 #'   for single-legged skidders.
 #' @details The function was inspired by
-#'   \link{http://www.bikecalc.com/skid_patch_math}.
-#' importFrom conf.design factorize
+#'   \url{http://www.bikecalc.com/skid_patch_math}.
+#' @importFrom conf.design factorize
+#' @export
+#' @examples
+#' find_wnr(54, 14)
+#' # you can also specify a vector
+#' find_wnr(front = 48:54,
+#'          rear = 12:18)
 
 find_wnr <- function(front, rear) {
   
@@ -94,8 +107,10 @@ find_wnr <- function(front, rear) {
   # calculate the number of skid patches
   vapply(seq_along(fac_1), function(i) {
     # find prime factors which front and rear have in common
+    
+    # mmh, still very wrong....
     tmp <- unlist(lapply(c(fac_1[i], fac_2[i]), unique))
-    int <- unique(tmp[duplicated(tmp)])
+    int <- tmp[duplicated(tmp) | duplicated(tmp, fromLast = TRUE)]
     rear[[i]] / prod(int)
   }, FUN.VALUE = numeric(1))
 }

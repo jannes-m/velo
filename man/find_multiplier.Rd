@@ -6,17 +6,17 @@
 \usage{
 find_multiplier(x)
 }
+\arguments{
+\item{x}{a numeric vector}
+}
 \description{
 Find lowest possible multiplier which yields an integer when
   multiplied with a numeric.
-param x a numeric vector
-importFrom stringr str_split
-importFrom dplyr %>%
-importFrom conf.design factorize
 }
 \examples{
 find_multiplier(2.25)
 find_multiplier(8.245)
+# x can also be a numeric vector of length > 1
 find_multiplier(c(2.25, 8.245, 2.1))
 }
 

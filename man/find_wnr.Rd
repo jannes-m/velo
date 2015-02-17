@@ -7,15 +7,25 @@
 find_wnr(front, rear)
 }
 \arguments{
-\item{front}{}
+\item{front}{The number of chainring teeth.}
 
-\item{rear}{}
+\item{rear}{The number of cog teeths.}
 }
 \value{
-a vector with the number of skid patches for single-legged skidders
-importFrom conf.design factorize
+The function returns a vector specifying the number of skid patches
+  for single-legged skidders.
 }
 \description{
 Simplify the gear ratio to the smallest whole number ratio.
+}
+\details{
+The function was inspired by
+  \url{http://www.bikecalc.com/skid_patch_math}.
+}
+\examples{
+find_wnr(54, 14)
+# you can also specify a vector
+find_wnr(front = 48:54,
+         rear = 12:18)
 }
 
