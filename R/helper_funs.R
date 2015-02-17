@@ -111,6 +111,9 @@ find_wnr <- function(front, rear) {
     # mmh, still very wrong....
     tmp <- unlist(lapply(c(fac_1[i], fac_2[i]), unique))
     int <- tmp[duplicated(tmp) | duplicated(tmp, fromLast = TRUE)]
+    # possible solution?
+    a[!a %in% setdiff(a, b)]
+    
     rear[[i]] / prod(int)
   }, FUN.VALUE = numeric(1))
 }
