@@ -15,20 +15,20 @@ returned by the function.}
 \value{
 The function returns a dataframe with three columns:
 \enumerate{
- \item{\strong{front} The optimal number of front gear tooths.}
- \item{\strong{rear} The optimal number of rear gear tooths.}
- \item{\strong{ratio} The gear ratio.}
- }
- The function displays all possible combinations in descending order which range +/- 0.1
-  of the desired gear ratio.
+\item{\strong{front} The optimal number of front gear tooths.}
+\item{\strong{rear} The optimal number of rear gear tooths.}
+\item{\strong{ratio} The gear ratio.}
+}
+The function displays all possible combinations in descending order which
+range +/- 0.1 around the desired gear ratio.
 }
 \description{
 \code{calc_fixie_tooths} calculates the optimal number of front
-  and rear gear tooths for a given gear ratio/transmission.
+and rear gear tooths for a given gear ratio/transmission.
 }
 \details{
-The function assumes that the front sprocket has between 31 and 62
-  tooths, and the rear sprocket between 14 and 21.
+The function assumes that the front sprocket has between 31 and 59
+tooths, and the rear sprocket between 14 and 21.
 }
 \examples{
 calc_fixie_tooths(2.8, 0.1)
