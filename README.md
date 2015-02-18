@@ -4,7 +4,7 @@
 velo
 ====
 
-velo is an R package which provides bicycle-related calculations frequently used by bike enthusiasts. So far, many of these functions are spread over the web, are unreliable due to insufficient documentation and/or do not exist. The main goals of the velo-package are:
+velo is an R package which provides bicycle-related calculations frequently used by bike enthusiasts. Until now many of these functions are spread over the web, are unreliable mostly due to insufficient documentation and/or do not exist. The main goals of the velo-package are:
 
 -   Bring together the most important bicycle-related calculations in a well-documented, transparent and reproducible manner (well, so far, there are just two functions, ...).
 
