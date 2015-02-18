@@ -6,11 +6,15 @@
 #' returned by the function.
 #' @details The function assumes that the chainring (front sprocket) varies in
 #'   size from 20 teeth to 59 and the cog varies from 14 teeth to 21 teeth.
-#' @return The function returns a dataframe with three columns:
+#' @return The function returns a dataframe with following columns:
 #' \enumerate{
 #' \item{\strong{front} The optimal number of chainring teeth.}
 #' \item{\strong{rear} The optimal number of cog teeth.}
 #' \item{\strong{ratio} The gear ratio.}
+#' \item{\strong{skid_1} The number of skid patches for single-legged skidders.
+#' See \code{\link{calc_skids}} for more details.}
+#' \item{\strong{skid_2} The number of skid patches for two-legged skidders.
+#' See \code{\link{calc_skids}} for more details.}
 #' }
 #' The function displays all possible combinations in descending order which
 #' range +/- 0.1 around the desired gear ratio.
@@ -20,7 +24,7 @@
 #' @export
 #' @keywords Single speed bike, Fixie
 #' @examples
-#' calc_fixie_teeth(2.8, 0.1)
+#' calc_fixie_teeth(2.8, 5)
 calc_fixie_teeth <- function(ratio = 2.8, nrow = 5) {
   if (ratio %% 1 == 0 | ratio <= 2) {
     snrow(paste0("Function argument ratio must be positive and",
@@ -40,25 +44,20 @@ calc_fixie_teeth <- function(ratio = 2.8, nrow = 5) {
   cond <- interp(~ ratio >= min & ratio <= max,
                  min = ratio - tol, max = ratio + tol)
   # subset according to the condition
-  filter_(d, cond) %>%
+  d <- filter_(d, cond) %>%
     # round your gear transmission to the third decimal place
     mutate(ratio = round(ratio, 3)) %>%
-    # calculate skid patches
-    mutate(patches = find_wnr(front = front, rear = rear)) %>%
-    # calculate ambidextrous skid patches
-    # if the numerator of the simplified gear ratio is odd 
-    # -> denominator times 2
-    # it the numerator of the simplified gear ratio is even
-    # -> still the denominator
-    mutate(patches_ambi = 
-             ifelse((front / (rear / patches)) %% 2 == 1,
-                    yes = patches * 2,
-                    no = patches)) %>%
     # subtract the desired ratio from your output
     mutate_(ratio_2 = interp(~ratio - opt, opt = ratio)) %>%
-    # and order the result by the lowest difference
-    arrange(-patches, abs(ratio_2)) %>%
-    select(-ratio_2) %>%
-    # display only the first ten rows
+    # select only the specified number of rows
     head(., nrow)  
+  
+  # calculate the number of skid patches
+  skids <- calc_skids(d$front, d$rear)
+  
+  # cbind d and skid patches
+  cbind(d, skids) %>%  
+  # order the result by the lowest difference
+  arrange(-skid_2, abs(ratio_2)) %>%
+  select(-ratio_2)
 }
