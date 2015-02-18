@@ -16,6 +16,16 @@ You can install the latest development version from github with
 if (packageVersion("devtools") < 1.6) {
     install.packages("devtools")    
     }
-devtools::install_github("hadley/lazyeval")
+if (!"lazyeval" %in% installed.packages()[, "Package"]) {
+devtools::install_github("hadley/lazyeval")  
+}
 devtools::install_github("jannes-m/velo")
 ```
+
+TO DO
+=====
+
+-   schoolmath package is rather slow, write a faster version to calculate the least common denominator and the greatest common divisor
+-   function to calculate the spoke length
+-   function to calculate the chain length
+-   implement functions in RShiny
