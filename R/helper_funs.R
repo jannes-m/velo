@@ -34,86 +34,14 @@ find_multiplier <- function(x) {
   # count the number of decimal places
   dp <- as.character(x_2) %>%
     nchar
-  
-  # prime factor decomposition
-  p <- factorize(x_2)
+
   # just keep prime factors that are also prime factors of 10, 100, 100, etc
-  denom <- factorize(10^dp)
+  denom <- 10^dp
   
-  # make sure denom and p are lists, this is not the default,
-  # if x is of length 1  
-    if (!is.list(denom)) {
-      denom <- list(denom)
-    }
-  if (!is.list(p)) {
-    p <- list(p)
-  }
+  # find the greatest common denominator
+  my_gcd <- mapply(gcd, denom, x_2)
   
-  # find the lowest possible integer
-  vapply(seq_along(denom), function(i) {
-    # find prime factors which p and denom have in common
-    #     tmp <- unlist(lapply(c(denom[i], p[i]), unique))
-    #     int <- unique(tmp[duplicated(tmp)])
-    suppressWarnings(
-      tmp <- is.element(denom[[i]], p[[i]]) &
-        is.element(p[[i]], denom[[i]])
-    )
-    int <- denom[[i]][tmp]
-    # calculate the lowest possible value which yields an integer when 
-    # multiplied with x
-    if (p[[i]][1] != 0) {
-      prod(denom[[i]]) / prod(int, na.rm = TRUE)
-    } else {
-      1
-    }    
-  }, numeric(1))
-
-}
- 
-
-#' @title Find smallest equivalent whole number ratio
-#' @description Simplify the gear ratio to the smallest whole number ratio.
-#' @param front The number of chainring teeth.
-#' @param  rear The number of cog teeths.
-#' @return The function returns a vector specifying the number of skid patches
-#'   for single-legged skidders.
-#' @details The function was inspired by
-#'   \url{http://www.bikecalc.com/skid_patch_math}.
-#' @importFrom conf.design factorize
-#' @export
-#' @examples
-#' find_wnr(54, 14)
-#' # you can also specify a vector
-#' find_wnr(front = 48:54,
-#'          rear = 12:18)
-
-find_wnr <- function(front, rear) {
-  
-  if (length(front) != length(rear)) {
-    stop("x and y must have the same length!")
-  }
-  
-  fac_1 <- factorize(front)
-  fac_2 <- factorize(rear)
-  # make sure that both factors are lists, this is not the default,
-  # if x any y are of length 1  
-  if (!is.list(fac_1)) {
-    fac_1 <- list(fac_1)
-  }
-  if (!is.list(fac_2)) {
-    fac_2 <- list(fac_2)
-  }
-  
-  # calculate the number of skid patches
-  vapply(seq_along(fac_1), function(i) {
-    # find prime factors which front and rear have in common
-    
-    # mmh, still very wrong....
-    tmp <- unlist(lapply(c(fac_1[i], fac_2[i]), unique))
-    int <- tmp[duplicated(tmp) | duplicated(tmp, fromLast = TRUE)]
-    # possible solution?
-    a[!a %in% setdiff(a, b)]
-    
-    rear[[i]] / prod(int)
-  }, FUN.VALUE = numeric(1))
+  # calculate the lowest possible value which yields an integer when 
+  # multiplied with x
+  mapply(`/`, denom, my_gcd)
 }
