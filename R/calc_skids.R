@@ -17,7 +17,6 @@
 #'   teeth. This corresponds to the number of skid patches for single-legged
 #'   skidders. As an extra, the function also calculates the number of skid
 #'   patches for ambidextrous skidders.
-#' @importFrom schoolmath  gcd prime.factor
 #' @importFrom dplyr mutate %>% select
 #' @export
 #' @examples

@@ -61,7 +61,7 @@ find_multiplier <- function(x) {
     stop("x must be numeric!")
   }
   if (any(x <= 1)) {
-    stop("x must be greater than 1")
+    stop("x must be greater than 1!")
   }
 
   # extract only figures after the decimal point
@@ -83,7 +83,7 @@ find_multiplier <- function(x) {
   denom <- 10^dp
   
   # find the greatest common denominator
-  my_gcd <- mapply(gcd, denom, x_2)
+  my_gcd <- mapply(find_gcd, denom, x_2)
   
   # calculate the lowest possible value which yields an integer when 
   # multiplied with x
