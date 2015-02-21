@@ -4,10 +4,18 @@
 \alias{calc_fixie_teeth}
 \title{Front and rear gear teeth (Fixie).}
 \usage{
-calc_fixie_teeth(ratio = 2.8, nrow = 5)
+calc_fixie_teeth(ratio = 2.8, tol = 0.1, front = 31:59, rear = 14:21,
+  nrow = 5)
 }
 \arguments{
 \item{ratio}{The desired gear ratio given as a positive numeral.}
+
+\item{tol}{Tolerance around which the specified gear ratio might deviate with
+0.1 as default.}
+
+\item{front}{Range of the number of chainring teeth given as an integer vector.}
+
+\item{rear}{Range of the number of cog teeth given as an integer vector.}
 
 \item{nrow}{An integer indicating the maximal number of rows which should be
 returned by the function.}
@@ -18,7 +26,7 @@ The function returns a dataframe with following columns:
 \item{\strong{front} The optimal number of chainring teeth in accordance with
 the number of skid patches and the specified \code{ratio} (see below for more
 details).}
-\item{\strong{rear} The optimal number of cog teethin accordance with the
+\item{\strong{rear} The optimal number of cog teethi n accordance with the
 number of skid patches and the specified \code{ratio} (see below for more
 details).}
 \item{\strong{ratio} The actual gear ratio.}
@@ -34,11 +42,7 @@ order.
 }
 \description{
 \code{calc_fixie_teeth} calculates the optimal number of front
-and rear gear teeth for a given gear ratio/transmission.
-}
-\details{
-The function assumes that the chainring (front sprocket) varies in
-  size from 31 teeth to 59 and the cog varies from 14 teeth to 21 teeth.
+and rear gear teeth for a given gear ratio.
 }
 \examples{
 calc_fixie_teeth(2.8, 5)

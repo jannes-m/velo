@@ -23,10 +23,8 @@ devtools::install_github("jannes-m/velo")
 ```
 
 TO DO
-=====
+-----
 
--   calc\_fixie\_teeth: Add function arguments that let the user specify the teeth range of cog and chainring.
--   schoolmath package is rather slow, write a faster version to calculate the least common denominator and the greatest common divisor
 -   function to calculate the spoke length
 -   function to calculate the chain length
 -   implement functions in RShiny

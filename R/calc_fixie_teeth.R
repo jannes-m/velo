@@ -4,10 +4,10 @@
 #' @param ratio The desired gear ratio given as a positive numeral.
 #' @param tol Tolerance around which the specified gear ratio might deviate with
 #'   0.1 as default.
+#' @param front Range of the number of chainring teeth given as an integer vector.
+#' @param rear Range of the number of cog teeth given as an integer vector.
 #' @param nrow An integer indicating the maximal number of rows which should be
 #' returned by the function.
-#' @details The function assumes that the chainring (front sprocket) varies in
-#'   size from 31 teeth to 59 and the cog varies from 14 teeth to 21 teeth.
 #' @return The function returns a dataframe with following columns:
 #' \enumerate{
 #' \item{\strong{front} The optimal number of chainring teeth in accordance with
@@ -33,19 +33,29 @@
 #' @keywords Single speed bike, Fixie
 #' @examples
 #' calc_fixie_teeth(2.8, 5)
-calc_fixie_teeth <- function(ratio = 2.8, tol = 0.1, nrow = 5) {
+calc_fixie_teeth <- function(ratio = 2.8, tol = 0.1, 
+                             front = 31:59,
+                             rear = 14:21,
+                             nrow = 5) {
+  
+  # test if ratio is numeric and greater than 1
   if (ratio %% 1 == 0 | ratio <= 1) {
     stop(paste0("Function argument ratio must be positive and",
                 " must not be an integer!"))
   }
-  # range of the number of teeth of the front sprocket
-  front <- 31:59
-  # range of the number of teeth of the rear sprocket
-  rear <- 14:21
+  
+  # test if input params are integers
+  if (any(!vapply(list(front, rear), function(x) {
+    isTRUE(all.equal(x %% 1, 0))
+  }, logical(1)))) {
+    stop("Both x and y must be integers.")
+  }
+  
   # expand
   d <- expand.grid("front" = front, "rear" = rear)
   # find the transmission ratio for each combination
   d <- mutate(d, ratio = front / rear)
+  
   # define the condition
   cond <- interp(~ ratio >= min & ratio <= max,
                  min = ratio - tol, max = ratio + tol)
@@ -58,6 +68,10 @@ calc_fixie_teeth <- function(ratio = 2.8, tol = 0.1, nrow = 5) {
     # select only the specified number of rows
     head(., nrow)  
   
+  if (nrow(d) == 0) {
+    stop("The combination of ratio and tolerance is incompatible ",
+         "with the specified number of chainring and cog teeth.")
+  }
   # calculate the number of skid patches
   skids <- calc_skids(d$front, d$rear)
   

@@ -1,3 +1,47 @@
+#' @title Greatest common divisor
+#' @description Find the greatest common divisor of two integers.
+#' @param x an integer of length 1
+#' @param y an integer of length 1
+#' @importFrom conf.design factorize
+#' @importFrom dplyr group_by filter summarise
+#' @author Jannes Muenchow
+#' @examples
+#' find_gcd(45, 15)
+#' find_gcd(1289, 124)
+#' @export
+find_gcd <- function(x = NULL, y = NULL) {
+  
+  if (any(vapply(list(x, y), is.null, logical(1)))) {
+    stop("Please specify x and y.")
+  }
+  # test if input params are integers
+  if (any(!vapply(list(x, y), function(x) {
+    isTRUE(all.equal(x %% 1, 0))
+  }, logical(1)))) {
+    stop("Both x and y must be integers.")
+  }
+  
+  # prime factor decomposition
+  # add 1 to avoid that there are no common prime factors
+  x <- c(1, factorize(x))
+  y <- c(1, factorize(y))
+  # find all elements shared by both vectors
+  sub <-unique(x[x %in% y])
+  # how often does each element occur in each vector
+  d <- rbind(data.frame(table(y[y %in% sub])),
+             data.frame(table(x[x %in% sub])))
+  d <- group_by(d, Var1) %>%
+    # take the minimum frequency (least common number of occurrences)
+    filter(Freq == min(Freq)) %>%
+    # if several groups share the same minimum take the first occurrence
+    summarise(Freq = first(Freq))
+  # convert to a vector
+  facs <- as.numeric(as.character(rep(d$Var1, d$Freq)))
+  # calculate the greatest common divisor
+  prod(facs)
+}
+
+
 #' @title Find multiplier
 #' @description Find lowest possible multiplier which yields an integer when
 #'   multiplied with a numeric.
