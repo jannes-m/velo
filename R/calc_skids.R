@@ -32,14 +32,13 @@ calc_skids <- function(front, rear) {
   }
   
   # find prime factors which front and rear have in common, i.e. find the
-  # greatest common divisor (gcd is rather slow, maybe we should enhance its
-  # performance some day...)
-  my_gcd <- mapply(find_gcd, front, rear)
+  # greatest common divisor
+  gcd <- mapply(find_gcd, front, rear)
   
   # Calculate skid patches, i.e. divide rear by the greatest common divisor,
   # which in fact yields the least common denominator
-  d <- data.frame(skid_1 = rear / my_gcd,
-                  num = front /my_gcd)
+  d <- data.frame(skid_1 = rear / gcd,
+                  num = front / gcd)
   
   # calculate ambidextrous skid patches
   # if the numerator of the simplified gear ratio is odd 

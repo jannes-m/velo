@@ -10,8 +10,8 @@ find_multiplier(x)
 \item{x}{a numeric vector}
 }
 \description{
-Find lowest possible multiplier which yields an integer when
-  multiplied with a numeric.
+Find lowest possible integer multiplier which yields an integer
+  when multiplied by a decimal number.
 }
 \examples{
 find_multiplier(2.25)

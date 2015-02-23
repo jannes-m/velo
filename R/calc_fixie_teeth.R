@@ -1,6 +1,6 @@
-#' @title Front and rear gear teeth (Fixie).
-#' @description \code{calc_fixie_teeth} calculates the optimal number of front
-#' and rear gear teeth for a given gear ratio. 
+#' @title Optimal teeth combination (Fixie)
+#' @description \code{calc_fixie_teeth} calculates the optimal number of
+#'   chainring (front) and cog (rear) teeth for a given gear ratio.
 #' @param ratio The desired gear ratio given as a positive numeral.
 #' @param tol Tolerance around which the specified gear ratio might deviate with
 #'   0.1 as default.
@@ -10,22 +10,17 @@
 #' returned by the function.
 #' @return The function returns a dataframe with following columns:
 #' \enumerate{
-#' \item{\strong{front} The optimal number of chainring teeth in accordance with
-#' the number of skid patches and the specified \code{ratio} (see below for more
-#' details).}
-#' \item{\strong{rear} The optimal number of cog teethi n accordance with the
-#' number of skid patches and the specified \code{ratio} (see below for more 
-#' details).}
+#' \item{\strong{front} The optimal number of chainring teeth (see \code{Details}).}
+#' \item{\strong{rear} The optimal number of cog teeth (see \code{Details}).}
 #' \item{\strong{ratio} The actual gear ratio.}
 #' \item{\strong{skid_1} The number of skid patches for single-legged skidders.
 #' See \code{\link{calc_skids}} for more details.}
 #' \item{\strong{skid_2} The number of skid patches for two-legged skidders.
 #' See \code{\link{calc_skids}} for more details.}
 #' }
-#' Internally, the function uses a tolerance of 0.1 around the specified 
-#' \code{ratio} for its calculations. Additionally, it sorts the results first
-#' by \code{skid_2} in descending, and second by \code{ratio} in ascending
-#' order.
+#' @details The function keeps only teeth combinations resulting in gear
+#'   ratios within the specified tolerance range. Secondly, it sorts the results
+#'   by \code{skid_2} in descending order.
 #' @author Jannes Muenchow
 #' @importFrom dplyr mutate_ mutate filter_ arrange select
 #' @importFrom lazyeval interp

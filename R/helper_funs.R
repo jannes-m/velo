@@ -43,8 +43,8 @@ find_gcd <- function(x = NULL, y = NULL) {
 
 
 #' @title Find multiplier
-#' @description Find lowest possible multiplier which yields an integer when
-#'   multiplied with a numeric.
+#' @description Find lowest possible integer multiplier which yields an integer
+#'   when multiplied by a decimal number.
 #' @param x a numeric vector
 #' @importFrom stringr str_split
 #' @importFrom dplyr %>%
@@ -60,10 +60,7 @@ find_multiplier <- function(x) {
   if (!is.numeric(x)) {
     stop("x must be numeric!")
   }
-  if (any(x <= 1)) {
-    stop("x must be greater than 1!")
-  }
-
+ 
   # extract only figures after the decimal point
   x_2 <- as.character(x) %>%
     str_split(., pattern = "\\.") %>%

@@ -2,7 +2,7 @@
 % Please edit documentation in R/calc_fixie_teeth.R
 \name{calc_fixie_teeth}
 \alias{calc_fixie_teeth}
-\title{Front and rear gear teeth (Fixie).}
+\title{Optimal teeth combination (Fixie)}
 \usage{
 calc_fixie_teeth(ratio = 2.8, tol = 0.1, front = 31:59, rear = 14:21,
   nrow = 5)
@@ -23,26 +23,23 @@ returned by the function.}
 \value{
 The function returns a dataframe with following columns:
 \enumerate{
-\item{\strong{front} The optimal number of chainring teeth in accordance with
-the number of skid patches and the specified \code{ratio} (see below for more
-details).}
-\item{\strong{rear} The optimal number of cog teethi n accordance with the
-number of skid patches and the specified \code{ratio} (see below for more
-details).}
+\item{\strong{front} The optimal number of chainring teeth (see \code{Details}).}
+\item{\strong{rear} The optimal number of cog teeth (see \code{Details}).}
 \item{\strong{ratio} The actual gear ratio.}
 \item{\strong{skid_1} The number of skid patches for single-legged skidders.
 See \code{\link{calc_skids}} for more details.}
 \item{\strong{skid_2} The number of skid patches for two-legged skidders.
 See \code{\link{calc_skids}} for more details.}
 }
-Internally, the function uses a tolerance of 0.1 around the specified
-\code{ratio} for its calculations. Additionally, it sorts the results first
-by \code{skid_2} in descending, and second by \code{ratio} in ascending
-order.
 }
 \description{
-\code{calc_fixie_teeth} calculates the optimal number of front
-and rear gear teeth for a given gear ratio.
+\code{calc_fixie_teeth} calculates the optimal number of
+  chainring (front) and cog (rear) teeth for a given gear ratio.
+}
+\details{
+The function keeps only teeth combinations resulting in gear
+  ratios within the specified tolerance range. Secondly, it sorts the results
+  by \code{skid_2} in descending order.
 }
 \examples{
 calc_fixie_teeth(2.8, 5)
