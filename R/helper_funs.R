@@ -79,10 +79,10 @@ find_multiplier <- function(x) {
   # just keep prime factors that are also prime factors of 10, 100, 100, etc
   denom <- 10^dp
   
-  # find the greatest common denominator
-  my_gcd <- mapply(find_gcd, denom, x_2)
+  # find the greatest common divisor
+  gcd <- mapply(find_gcd, denom, x_2)
   
   # calculate the lowest possible value which yields an integer when 
   # multiplied with x
-  mapply(`/`, denom, my_gcd)
+  mapply(`/`, denom, gcd)
 }
