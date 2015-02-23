@@ -41,7 +41,7 @@ calc_fixie_teeth <- function(ratio = 2.8, tol = 0.1,
   
   # test if input params are integers
   if (any(!vapply(list(front, rear), function(x) {
-    isTRUE(all.equal(x %% 1, 0))
+    isTRUE(all.equal(x %% 1, rep(0, length(x))))
   }, logical(1)))) {
     stop("Both x and y must be integers.")
   }
