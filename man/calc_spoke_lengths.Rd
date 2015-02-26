@@ -4,33 +4,42 @@
 \alias{calc_spoke_lengths}
 \title{Calculation of spoke lengths}
 \usage{
-calc_spoke_lengths(n, erd, left_flange_d, right_flange_d, wl, wr, cross = 3,
-  spoke_hole_d = 2.4, osb = 0)
+calc_spoke_lengths(n = 32, erd, left_flange_d, right_flange_d, wl, wr,
+  cross = 3, spoke_hole_d = 2.4, osb = 0)
 }
 \arguments{
-\item{n}{Total number of spokes.}
+\item{n}{Total number of spokes per bike wheel (default: 32).}
 
-\item{erd}{Effective rim diameter.}
+\item{erd}{Effective rim diameter of the wheel (mm).}
 
-\item{left_flange_d}{Left flange diameter.}
+\item{left_flange_d}{Diameter of the left flange (mm).}
 
-\item{right_flange_d}{Right flange diameter.}
+\item{right_flange_d}{Diameter of the right flange (mm).}
 
-\item{wl}{Width from center to left flange.}
+\item{wl}{Width from the hub center to the left flange (mm).}
 
-\item{wr}{width from center to right flange}
+\item{wr}{Width from the hub center to the right flange (mm).}
 
-\item{cross}{Number of crosses.}
+\item{cross}{Number of times each spoke crosses other spokes. The default is
+the common 3-cross lacing pattern.}
 
-\item{spoke_hole_d}{spoke hole diameter.}
+\item{spoke_hole_d}{Diameter of the spoke hole (mm).}
 
-\item{osb}{Offset spoke bed.}
+\item{osb}{Offset spoke bed in mm (default: 0).}
+}
+\value{
+The function returns a data.frame with one row and the columns
+  "left_length" and "right_length" in mm.
 }
 \description{
-Calculate the spoke lengths for a given erd, flange, etc.
+Calculate the spoke lengths for a given effective rim diameter
+  (ERD) in combination with hub dimensions.
 }
 \examples{
-calc_spoke_lengths(n = 36, erd = 558, left_flange_d = 67,
-                   right_flange_d = 67, wl = 44, wr = 31)
+calc_spoke_lengths(n = 36, erd = 558, left_flange_d = 45,
+                   right_flange_d = 45, wl = 44, wr = 31)
+}
+\author{
+Jannes Muenchow
 }
 

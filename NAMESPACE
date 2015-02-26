@@ -2,6 +2,7 @@
 
 export(calc_fixie_teeth)
 export(calc_skids)
+export(calc_spoke_lengths)
 export(find_gcd)
 export(find_multiplier)
 importFrom(conf.design,factorize)
