@@ -14,11 +14,16 @@ find_gcd <- function(x = NULL, y = NULL) {
   if (any(vapply(list(x, y), is.null, logical(1)))) {
     stop("Please specify x and y.")
   }
+ 
+  if (any(mapply(length, list(x, y)) > 1)) {
+    stop("x and y must be of length 1!")
+  }
+ 
   # test if input params are integers
   if (any(!vapply(list(x, y), function(x) {
     isTRUE(all.equal(x %% 1, 0))
   }, logical(1)))) {
-    stop("Both x and y must be integers.")
+    stop("x and y must be integers.")
   }
   
   # prime factor decomposition
