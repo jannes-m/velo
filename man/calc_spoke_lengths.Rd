@@ -5,7 +5,7 @@
 \title{Calculation of spoke lengths}
 \usage{
 calc_spoke_lengths(n = 32, erd, left_flange_d, right_flange_d, wl, wr,
-  cross = 3, spoke_hole_d = 2.4, osb = 0)
+  cross = 3, spoke_hole_d = 2.4)
 }
 \arguments{
 \item{n}{Total number of spokes per bike wheel (default: 32).}
@@ -25,8 +25,6 @@ the nipple seats.}
 3 (3-cross lacing pattern).}
 
 \item{spoke_hole_d}{Diameter of the spoke hole (mm).}
-
-\item{osb}{Offset spoke bed in mm (default: 0).}
 }
 \value{
 The function returns a data.frame with one row and the columns
@@ -43,7 +41,7 @@ So far the function assumes that the nipple has a length of 12 mm.
 # Rigida Zac 2000 with 36 spoke holes
 # Shimano Deore LX FH-M580 (rear hub)
 calc_spoke_lengths(n = 36, erd = 537, left_flange_d = 45,
-                   right_flange_d = 45, wl = 44, wr = 31)
+                   right_flange_d = 45, wl = 37.5, wr = 17.5)
 }
 \author{
 Jannes Muenchow
