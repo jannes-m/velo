@@ -7,16 +7,16 @@
 #'   the nipple seats.
 #' @param spoke_hole_d Diameter of the spoke hole (mm).
 #' @param cross Number of times each spoke crosses other spokes. The default is
-#'   the common 3-cross lacing pattern.
+#'   3 (3-cross lacing pattern).
 #' @param wl Width from the hub center to the left flange (mm).
 #' @param wr Width from the hub center to the right flange (mm).
 #' @param osb Offset spoke bed in mm (default: 0).
 #' @param n Total number of spokes per bike wheel (default: 32).
 #' @author Jannes Muenchow
 #' @return The function returns a data.frame with one row and the columns
-#'   "left_length" and "right_length" in mm.
+#'   \strong{left_length} and \strong{right_length} in mm.
 #' @export
-#' @note So far the function assumes that your nipple is of length 12 mm.
+#' @note So far the function assumes that the nipple has a length of 12 mm.
 #' @examples 
 #' # Rigida Zac 2000 with 36 spoke holes
 #' # Shimano Deore LX FH-M580 (rear hub)

@@ -22,7 +22,7 @@ the nipple seats.}
 \item{wr}{Width from the hub center to the right flange (mm).}
 
 \item{cross}{Number of times each spoke crosses other spokes. The default is
-the common 3-cross lacing pattern.}
+3 (3-cross lacing pattern).}
 
 \item{spoke_hole_d}{Diameter of the spoke hole (mm).}
 
@@ -30,14 +30,14 @@ the common 3-cross lacing pattern.}
 }
 \value{
 The function returns a data.frame with one row and the columns
-  "left_length" and "right_length" in mm.
+  \strong{left_length} and \strong{right_length} in mm.
 }
 \description{
 Calculate the spoke lengths for a given effective rim diameter
   (ERD) in combination with the necessary hub dimensions.
 }
 \note{
-So far the function assumes that your nipple is of length 12 mm.
+So far the function assumes that the nipple has a length of 12 mm.
 }
 \examples{
 # Rigida Zac 2000 with 36 spoke holes
