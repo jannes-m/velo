@@ -10,7 +10,8 @@ calc_spoke_lengths(n = 32, erd, left_flange_d, right_flange_d, wl, wr,
 \arguments{
 \item{n}{Total number of spokes per bike wheel (default: 32).}
 
-\item{erd}{Effective rim diameter of the wheel (mm).}
+\item{erd}{Effective rim diameter (mm), which is the diameter of the rim at
+the nipple seats.}
 
 \item{left_flange_d}{Diameter of the left flange (mm).}
 
@@ -33,10 +34,15 @@ The function returns a data.frame with one row and the columns
 }
 \description{
 Calculate the spoke lengths for a given effective rim diameter
-  (ERD) in combination with hub dimensions.
+  (ERD) in combination with the necessary hub dimensions.
+}
+\note{
+So far the function assumes that your nipple is of length 12 mm.
 }
 \examples{
-calc_spoke_lengths(n = 36, erd = 558, left_flange_d = 45,
+# Rigida Zac 2000 with 36 spoke holes
+# Shimano Deore LX FH-M580 (rear hub)
+calc_spoke_lengths(n = 36, erd = 537, left_flange_d = 45,
                    right_flange_d = 45, wl = 44, wr = 31)
 }
 \author{

@@ -3,7 +3,8 @@
 #'   (ERD) in combination with the necessary hub dimensions.
 #' @param left_flange_d Diameter of the left flange (mm).
 #' @param right_flange_d Diameter of the right flange (mm).
-#' @param erd Effective rim diameter of the wheel (mm).
+#' @param erd Effective rim diameter (mm), which is the diameter of the rim at
+#'   the nipple seats.
 #' @param spoke_hole_d Diameter of the spoke hole (mm).
 #' @param cross Number of times each spoke crosses other spokes. The default is
 #'   the common 3-cross lacing pattern.
@@ -15,8 +16,11 @@
 #' @return The function returns a data.frame with one row and the columns
 #'   "left_length" and "right_length" in mm.
 #' @export
+#' @note So far the function assumes that your nipple is of length 12 mm.
 #' @examples 
-#' calc_spoke_lengths(n = 36, erd = 558, left_flange_d = 45,
+#' # Rigida Zac 2000 with 36 spoke holes
+#' # Shimano Deore LX FH-M580 (rear hub)
+#' calc_spoke_lengths(n = 36, erd = 537, left_flange_d = 45,
 #'                    right_flange_d = 45, wl = 44, wr = 31)
 
 
