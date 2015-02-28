@@ -34,6 +34,14 @@ The function returns a data.frame with one row and the columns
 Calculate the spoke lengths for a given effective rim diameter
   (ERD) in combination with the necessary hub dimensions.
 }
+\details{
+Essentially, Euclidean geometry solves the problem of calculating
+  the length of a spoke. ERD and hub dimensions provide the necessary lengths
+  while crossing pattern and the number of spoke holes determine the angle.
+  Please refer to
+  \url{http://www.wheelpro.co.uk/support/spoke-length-proof.php} for an
+  excellent mathematical proof, both in terms of explanation and depiction.
+}
 \note{
 So far the function assumes that the nipple has a length of 12 mm.
 }
