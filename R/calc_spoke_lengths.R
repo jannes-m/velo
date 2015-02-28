@@ -16,6 +16,8 @@
 #'   \strong{left_length} and \strong{right_length} in mm.
 #' @export
 #' @note So far the function assumes that the nipple has a length of 12 mm.
+#' @references Roger Musson (2013): A professional guide to wheelbuilding. 6th
+#'   Edition. \url{http://www.wheelpro.co.uk/}.
 #' @examples 
 #' # Rigida Zac 2000 with 36 spoke holes
 #' # Shimano Deore LX FH-M580 (rear hub)

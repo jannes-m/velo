@@ -46,4 +46,8 @@ calc_spoke_lengths(n = 36, erd = 537, left_flange_d = 45,
 \author{
 Jannes Muenchow
 }
+\references{
+Roger Musson (2013): A professional guide to wheelbuilding. 6th
+  Edition. \url{http://www.wheelpro.co.uk/}.
+}
 
