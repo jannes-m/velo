@@ -4,14 +4,16 @@
 \alias{calc_spoke_lengths}
 \title{Calculation of spoke lengths}
 \usage{
-calc_spoke_lengths(n = 32, erd, left_flange_d, right_flange_d, wl, wr,
-  cross = 3, spoke_hole_d = 2.4)
+calc_spoke_lengths(n = 32, erd = NULL, left_flange_d = NULL,
+  right_flange_d = NULL, wl = NULL, wr = NULL, cross = 3,
+  spoke_hole_d = 2.4, offset = 0, side = "no_offset")
 }
 \arguments{
 \item{n}{Total number of spokes per bike wheel (default: 32).}
 
 \item{erd}{Effective rim diameter (mm), which is the diameter of the rim at
-the nipple seats, sometimes also referred to as over spoke diameter.}
+the nipple seats, i.e. the diameter at the end of the spokes in the
+finished wheel. This is sometimes also referred to as over spoke diameter.}
 
 \item{left_flange_d}{Diameter of the left flange (mm).}
 
@@ -25,6 +27,15 @@ the nipple seats, sometimes also referred to as over spoke diameter.}
 3 (3-cross lacing pattern).}
 
 \item{spoke_hole_d}{Diameter of the spoke hole (mm).}
+
+\item{offset}{The length (in mm) by which the spoke holes are positioned away
+from the rim centerline.}
+
+\item{side}{side can take one of three values: "no_offset" (default), "front"
+or "rear". You only need to specify this argument if your rim comes with an
+offset. Offsets are subtracted from \code{wl} and added to \code{wr} in the
+rear case (sprokes on the right side cause wheel dish), and vice versa in
+the front case (disc brake on the left might cause wheel dish).}
 }
 \value{
 The function returns a data.frame with one row and the columns
@@ -50,6 +61,10 @@ So far the function assumes that the nipple has a length of 12 mm.
 # Shimano Deore LX FH-M580 (rear hub)
 calc_spoke_lengths(n = 36, erd = 537, left_flange_d = 45,
                    right_flange_d = 45, wl = 37.5, wr = 17.5)
+# using an offset
+calc_spoke_lengths(n = 36, erd = 537, left_flange_d = 45,
+                   right_flange_d = 45, wl = 38, wr = 18, offset = 3,
+                   side = "rear")
 }
 \author{
 Jannes Muenchow
