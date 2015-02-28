@@ -4,7 +4,7 @@
 #' @param left_flange_d Diameter of the left flange (mm).
 #' @param right_flange_d Diameter of the right flange (mm).
 #' @param erd Effective rim diameter (mm), which is the diameter of the rim at
-#'   the nipple seats.
+#'   the nipple seats, sometimes also referred to as over spoke diameter.
 #' @param spoke_hole_d Diameter of the spoke hole (mm).
 #' @param cross Number of times each spoke crosses other spokes. The default is
 #'   3 (3-cross lacing pattern).

@@ -11,7 +11,7 @@ calc_spoke_lengths(n = 32, erd, left_flange_d, right_flange_d, wl, wr,
 \item{n}{Total number of spokes per bike wheel (default: 32).}
 
 \item{erd}{Effective rim diameter (mm), which is the diameter of the rim at
-the nipple seats.}
+the nipple seats, sometimes also referred to as over spoke diameter.}
 
 \item{left_flange_d}{Diameter of the left flange (mm).}
 
