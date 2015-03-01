@@ -22,19 +22,25 @@
 #' @details Essentially, Euclidean geometry solves the problem of calculating 
 #'   the length of a spoke. ERD and hub dimensions provide the necessary lengths
 #'   while crossing pattern and the number of spoke holes determine the angle.
-#'   The function uses following formula:
-#'   \deqn{
-#'   spoke_length = sqrt((erd / 2)^2 + 
-#'    (flange_d / 2)^2 + 
-#'    w^2 - 
-#'    2 * (erd / 2) * (left_flange_d / 2) * cos((360 / (n / 2) * cross) * pi / 180)) -
-#'    spoke_hole_d / 2} 
-#'  for \eqn{flange_d = left or right flange diameter,
+#'   The function uses following formulas to derive the spoke length:
+#'  \deqn{r^2 = (\frac{erd}{2}^{2}}{r^2 = (erd / 2)^2}
+#'  \deqn{h^2 = (\frac{flange_d}{2}^2}{h^2 = (flange_d / 2)^2}
+#'  \deqn{f^2 = w^2}{f^2 = w^2}
+#'  \deqn{cos_a = (\cos((\frac{360}{\frac{n}{2}} * cross) *
+#'   pi / 180)}{cos_a = cos((360 / (n / 2) * cross) * pi / 180)}
+#'   \deqn{spoke_length = 
+#'    \sqrt(r^2 + h^2 + f^2 - 
+#'    2 * \frac{erd}{2} * \frac{flange_d}{2} * cos_a) - 
+#'    \frac{spoke_hole_d}{2}}{spoke_length = 
+#'    sqrt(r^2 + h^2 + f^2 - 
+#'    2 * (erd / 2) * (flange_d / 2) * cos_a) - 
+#'    spoke_hole_d / 2}
+#' for \eqn{flange_d = left or right flange diameter,
 #'           w = width from the the hub center to the left or right flange}
-#'   
+#' 
 #'  Please refer to 
 #'   \url{http://www.wheelpro.co.uk/support/spoke-length-proof.php} for an
-#'   excellent mathematical proof of this formula, both in terms of explanation and depiction.
+#'   excellent mathematical proof, both in terms of explanation and depiction.
 #' @author Jannes Muenchow
 #' @return The function returns a data.frame with one row and the columns 
 #'   \strong{left_length} and \strong{right_length} in mm.
@@ -75,6 +81,8 @@ calc_spoke_lengths <- function(n = 32, erd = NULL, left_flange_d = NULL,
   angle <- 360 / (n / 2) * cross
   # convert the angle to radians (R's trigonometric functions demand radians)
   rad <-  angle * pi / 180
+  # take the cosinus
+  cos_a <- cos(rad)
   
   # write an internal function
   calc_spoke <- function(flange_d, w) {
@@ -84,10 +92,8 @@ calc_spoke_lengths <- function(n = 32, erd = NULL, left_flange_d = NULL,
     h_2 <- (flange_d / 2)^2
     # square the flange offset
     f_2 <-  w^2
-    # take the angle into account
-    a <- 2 * (erd / 2) * (left_flange_d / 2) * cos(rad)
     # Pythagorean theorem and cosine rule in conjunction
-    sqrt(r_2 + h_2 + f_2 - a) -
+    sqrt(r_2 + h_2 + f_2 - 2 * (erd / 2) * (flange_d / 2) * cos_a) -
       # subtract half the spoke hole diameter
       spoke_hole_d / 2
   }

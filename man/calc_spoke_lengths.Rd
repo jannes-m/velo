@@ -49,19 +49,25 @@ Calculate the spoke lengths for a given effective rim diameter
 Essentially, Euclidean geometry solves the problem of calculating
   the length of a spoke. ERD and hub dimensions provide the necessary lengths
   while crossing pattern and the number of spoke holes determine the angle.
-  The function uses following formula:
-  \deqn{
-  spoke_length = sqrt((erd / 2)^2 +
-   (flange_d / 2)^2 +
-   w^2 -
-   2 * (erd / 2) * (left_flange_d / 2) * cos((360 / (n / 2) * cross) * pi / 180)) -
+  The function uses following formulas to derive the spoke length:
+ \deqn{r^2 = (\frac{erd}{2}^{2}}{r^2 = (erd / 2)^2}
+ \deqn{h^2 = (\frac{flange_d}{2}^2}{h^2 = (flange_d / 2)^2}
+ \deqn{f^2 = w^2}{f^2 = w^2}
+ \deqn{cos_a = (\cos((\frac{360}{\frac{n}{2}} * cross) *
+  pi / 180)}{cos_a = cos((360 / (n / 2) * cross) * pi / 180)}
+  \deqn{spoke_length =
+   \sqrt(r^2 + h^2 + f^2 -
+   2 * \frac{erd}{2} * \frac{flange_d}{2} * cos_a) -
+   \frac{spoke_hole_d}{2}}{spoke_length =
+   sqrt(r^2 + h^2 + f^2 -
+   2 * (erd / 2) * (flange_d / 2) * cos_a) -
    spoke_hole_d / 2}
- for \eqn{flange_d = left or right flange diameter,
+for \eqn{flange_d = left or right flange diameter,
           w = width from the the hub center to the left or right flange}
 
  Please refer to
   \url{http://www.wheelpro.co.uk/support/spoke-length-proof.php} for an
-  excellent mathematical proof of this formula, both in terms of explanation and depiction.
+  excellent mathematical proof, both in terms of explanation and depiction.
 }
 \examples{
 # Rigida Zac 2000 with 36 spoke holes
