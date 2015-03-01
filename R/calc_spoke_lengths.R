@@ -12,8 +12,8 @@
 #' @param wl Width from the hub center to the left flange (mm).
 #' @param wr Width from the hub center to the right flange (mm).
 #' @param n Total number of spokes per bike wheel (default: 32).
-#' @param offset The length (in mm) by which the spoke holes are positioned away
-#'   from the rim centerline.
+#' @param offset The distance (in mm) by which the spoke holes are positioned
+#'   away from the rim centerline (default: 0).
 #' @param side side can take one of three values: "no_offset" (default), "front"
 #'   or "rear". You only need to specify this argument if your rim comes with an
 #'   offset. Offsets are subtracted from \code{wl} and added to \code{wr} in the
@@ -21,15 +21,24 @@
 #'   the front case (disc brake on the left might cause wheel dish).
 #' @details Essentially, Euclidean geometry solves the problem of calculating 
 #'   the length of a spoke. ERD and hub dimensions provide the necessary lengths
-#'   while crossing pattern and the number of spoke holes determine the angle. 
-#'   Please refer to 
-#'   \url{http://www.wheelpro.co.uk/support/spoke-length-proof.php} for an 
-#'   excellent mathematical proof, both in terms of explanation and depiction.
+#'   while crossing pattern and the number of spoke holes determine the angle.
+#'   The function uses following formula:
+#'   \deqn{
+#'   spoke_length = sqrt((erd / 2)^2 + 
+#'    (flange_d / 2)^2 + 
+#'    w^2 - 
+#'    2 * (erd / 2) * (left_flange_d / 2) * cos((360 / (n / 2) * cross) * pi / 180)) -
+#'    spoke_hole_d / 2} 
+#'  for \eqn{flange_d = left or right flange diameter,
+#'           w = width from the the hub center to the left or right flange}
+#'   
+#'  Please refer to 
+#'   \url{http://www.wheelpro.co.uk/support/spoke-length-proof.php} for an
+#'   excellent mathematical proof of this formula, both in terms of explanation and depiction.
 #' @author Jannes Muenchow
 #' @return The function returns a data.frame with one row and the columns 
 #'   \strong{left_length} and \strong{right_length} in mm.
 #' @export
-#' @note So far the function assumes that the nipple has a length of 12 mm.
 #' @references Roger Musson (2013): A professional guide to wheelbuilding. 6th 
 #'   Edition. \url{http://www.wheelpro.co.uk/}.
 #' @examples 
@@ -39,7 +48,7 @@
 #'                    right_flange_d = 45, wl = 37.5, wr = 17.5)
 #' # using an offset
 #' calc_spoke_lengths(n = 36, erd = 537, left_flange_d = 45,
-#'                    right_flange_d = 45, wl = 38, wr = 18, offset = 3,
+#'                    right_flange_d = 45, wl = 37.5, wr = 17.5, offset = 3,
 #'                    side = "rear") 
 
 calc_spoke_lengths <- function(n = 32, erd = NULL, left_flange_d = NULL, 
@@ -48,7 +57,7 @@ calc_spoke_lengths <- function(n = 32, erd = NULL, left_flange_d = NULL,
                                side = "no_offset") {
   args <- c("erd", "left_flange_d", "right_flange_d", "wl", "wr")
   ind <- mapply(function(x) is.null(get(x)), as.list(args))
-  if (any(test)) {
+  if (any(ind)) {
     stop("Please specify also: ", paste(args[ind], collapse = ", "))
   }
   # incorporate offset
@@ -56,7 +65,7 @@ calc_spoke_lengths <- function(n = 32, erd = NULL, left_flange_d = NULL,
     wl <- wl - offset
     wr <- wr + offset
     }
-  else {
+  else if (side == "front") {
     wl <- wl + offset
     wr <- wr - offset
   }

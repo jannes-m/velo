@@ -28,8 +28,8 @@ finished wheel. This is sometimes also referred to as over spoke diameter.}
 
 \item{spoke_hole_d}{Diameter of the spoke hole (mm).}
 
-\item{offset}{The length (in mm) by which the spoke holes are positioned away
-from the rim centerline.}
+\item{offset}{The distance (in mm) by which the spoke holes are positioned
+away from the rim centerline (default: 0).}
 
 \item{side}{side can take one of three values: "no_offset" (default), "front"
 or "rear". You only need to specify this argument if your rim comes with an
@@ -49,12 +49,19 @@ Calculate the spoke lengths for a given effective rim diameter
 Essentially, Euclidean geometry solves the problem of calculating
   the length of a spoke. ERD and hub dimensions provide the necessary lengths
   while crossing pattern and the number of spoke holes determine the angle.
-  Please refer to
+  The function uses following formula:
+  \deqn{
+  spoke_length = sqrt((erd / 2)^2 +
+   (flange_d / 2)^2 +
+   w^2 -
+   2 * (erd / 2) * (left_flange_d / 2) * cos((360 / (n / 2) * cross) * pi / 180)) -
+   spoke_hole_d / 2}
+ for \eqn{flange_d = left or right flange diameter,
+          w = width from the the hub center to the left or right flange}
+
+ Please refer to
   \url{http://www.wheelpro.co.uk/support/spoke-length-proof.php} for an
-  excellent mathematical proof, both in terms of explanation and depiction.
-}
-\note{
-So far the function assumes that the nipple has a length of 12 mm.
+  excellent mathematical proof of this formula, both in terms of explanation and depiction.
 }
 \examples{
 # Rigida Zac 2000 with 36 spoke holes
@@ -63,7 +70,7 @@ calc_spoke_lengths(n = 36, erd = 537, left_flange_d = 45,
                    right_flange_d = 45, wl = 37.5, wr = 17.5)
 # using an offset
 calc_spoke_lengths(n = 36, erd = 537, left_flange_d = 45,
-                   right_flange_d = 45, wl = 38, wr = 18, offset = 3,
+                   right_flange_d = 45, wl = 37.5, wr = 17.5, offset = 3,
                    side = "rear")
 }
 \author{
