@@ -1,3 +1,4 @@
+#' @title Calculate chain links and chain length
 #' @description Calculate the recommended number of chain links and the chain length in cm.
 #' @param cs Length of the chain stay in mm.
 #' @param chainring Number of teeth of the high gear chainring.
@@ -23,13 +24,13 @@ calc_chain <- function(cs = NULL, chainring = NULL, sprocket = NULL,
 }
 
 # Kl=Kettenlenge(document.data.RiZ.value,document.data.KbZ.value,document.data.KeStLe.value);
-# //alert("Kettenlänge ungerundet: "+(Kl));
+# //alert("KettenlÃ¤nge ungerundet: "+(Kl));
 # Kl=parseInt(Kl);
-# //alert("Kettenlänge Integer: "+(Kl));
+# //alert("KettenlÃ¤nge Integer: "+(Kl));
 # if (Kl % 2 != 0) {Kl=Kl+1};
 # Klcm=Kl*1.275;
 # Klcm=dispnum(Klcm);
-# alert("\n                                             Kettenlänge = "+(Kl)+" Glieder\n                                                Entspricht = "+(Klcm)+" cm"+"\n                           Das Ergebnis gilt für Schaltungsröllchen mit 10 Zähnen!"+"\nFür neueste Schaltungenröllchen mit 11 Zähnen muß die Kettenlänge um zwei Glieder verlängert werden!!!");
+# alert("\n                                             KettenlÃ¤nge = "+(Kl)+" Glieder\n                                                Entspricht = "+(Klcm)+" cm"+"\n                           Das Ergebnis gilt fÃ¼r SchaltungsrÃ¶llchen mit 10 ZÃ¤hnen!"+"\nFÃ¼r neueste SchaltungenrÃ¶llchen mit 11 ZÃ¤hnen muÃŸ die KettenlÃ¤nge um zwei Glieder verlÃ¤ngert werden!!!");
 # }
 # 
 # function Kettenlenge(x1,x2,x3) {
