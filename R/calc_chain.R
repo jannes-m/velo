@@ -1,9 +1,11 @@
 #' @title Calculate chain links and chain length
-#' @description Calculate the recommended number of chain links and the chain length in cm.
+#' @description Calculate the recommended number of chain links and the chain
+#'   length in cm.
 #' @param cs Length of the chain stay in mm.
 #' @param chainring Number of teeth of the high gear chainring.
 #' @param sprocket Number of teeth of the high gear sprocket.
-#' @param idler Number of teeth of the idler roller, i.e. 10 or 11 (default: 10).
+#' @param idler Number of teeth of the idler roller, i.e. 10 or 11 (default:
+#'   10).
 #' @export
 #' @author Jannes Muenchow
 #' @examples 
