@@ -8,22 +8,30 @@
 #'   10).
 #' @export
 #' @author Jannes Muenchow
+#' @details The number of links have to be even so that you can connect both 
+#'   ends of the chain. That means if the formula yields an odd number of links,
+#'   the function autommatically adds one additional link.
 #' @examples 
 #' calc_chain(cs = 400, chainring = 52, sprocket = 28)
 
 calc_chain <- function(cs = NULL, chainring = NULL, sprocket = NULL,
                        idler = 10) {
-  cl <- round(0.157 * cs + 0.5 * chainring + 0.5 * sprocket + 2)
-  # still somethin amiss, many functions use floor
-  if (!isTRUE(all.equal(cl / 2, 0))) {
+  cl <- floor(0.157 * cs + 0.5 * chainring + 0.5 * sprocket + 2)
+  # check if cl is even, if not add 1 to make it even
+  if (!isTRUE(all.equal(cl %% 2, 0))) {
     cl <- cl + 1
   }  
   if (idler == 11) {
     cl <- cl + 2
   }
-  cl_cm <- round(cl * 25.4 / 2 / 10)  
+  # one chain link corresponds to half an inch
+  cl_cm <- round(cl * 2.54 / 2, 2)  
   list(cl, cl_cm)
 }
+
+# chain length for Fixies:
+# http://www.machinehead-software.co.uk/bike/chain_length/chain_length_calculator.html
+
 
 # Kl=Kettenlenge(document.data.RiZ.value,document.data.KbZ.value,document.data.KeStLe.value);
 # //alert("Kettenlänge ungerundet: "+(Kl));
