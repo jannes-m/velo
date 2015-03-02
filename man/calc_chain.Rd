@@ -2,6 +2,7 @@
 % Please edit documentation in R/calc_chain.R
 \name{calc_chain}
 \alias{calc_chain}
+\title{Calculate chain links and chain length}
 \usage{
 calc_chain(cs = NULL, chainring = NULL, sprocket = NULL, idler = 10)
 }
@@ -12,10 +13,12 @@ calc_chain(cs = NULL, chainring = NULL, sprocket = NULL, idler = 10)
 
 \item{sprocket}{Number of teeth of the high gear sprocket.}
 
-\item{idler}{Number of teeth of the idler roller, i.e. 10 or 11 (default: 10).}
+\item{idler}{Number of teeth of the idler roller, i.e. 10 or 11 (default:
+10).}
 }
 \description{
-Calculate the recommended number of chain links and the chain length in cm.
+Calculate the recommended number of chain links and the chain
+  length in cm.
 }
 \examples{
 calc_chain(cs = 400, chainring = 52, sprocket = 28)
