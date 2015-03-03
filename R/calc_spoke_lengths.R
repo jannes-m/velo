@@ -61,11 +61,25 @@ calc_spoke_lengths <- function(n = 32, erd = NULL, left_flange_d = NULL,
                                right_flange_d = NULL, wl = NULL, wr = NULL,
                                cross = 3, spoke_hole_d = 2.4, offset = 0,
                                side = "no_offset") {
+  
+  # test if all necessary arguments were provided
   args <- c("erd", "left_flange_d", "right_flange_d", "wl", "wr")
-  ind <- mapply(function(x) is.null(get(x)), as.list(args))
+  ind <- mapply(function(x) {
+    is.null(get(x))},
+    as.list(args))
   if (any(ind)) {
     stop("Please specify also: ", paste(args[ind], collapse = ", "))
   }
+  
+  # test if all args are positive
+  args <- c(args, "cross", "spoke_hole_d", "offset")
+  ind  <- mapply(function(x) {
+    get(x) < 0},
+    as.list(args))
+  if (any(ind)) {
+   stop(paste(args[ind], collapse = ", "), " should be positive!") 
+  }
+  
   # incorporate offset
   if (side == "rear") {
     wl <- wl - offset
@@ -103,4 +117,3 @@ calc_spoke_lengths <- function(n = 32, erd = NULL, left_flange_d = NULL,
     "right_length" = round(calc_spoke(flange_d = right_flange_d, w = wr), 1)
   )
 }
-

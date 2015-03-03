@@ -20,6 +20,11 @@ calc_chain(cs = NULL, chainring = NULL, sprocket = NULL, idler = 10)
 Calculate the recommended number of chain links and the chain
   length in cm.
 }
+\details{
+The number of links have to be even so that you can connect both
+  ends of the chain. That means if the formula yields an odd number of links,
+  the function autommatically adds one additional link.
+}
 \examples{
 calc_chain(cs = 400, chainring = 52, sprocket = 28)
 }

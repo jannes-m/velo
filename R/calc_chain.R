@@ -16,7 +16,36 @@
 
 calc_chain <- function(cs = NULL, chainring = NULL, sprocket = NULL,
                        idler = 10) {
-  cl <- floor(0.157 * cs + 0.5 * chainring + 0.5 * sprocket + 2)
+  # test if all necessary arguments are specified
+  args <- c("cs", "chainring", "sprocket")
+  ind <- mapply(function(x) {
+    is.null(get(x))
+  }, as.list(args))
+  if (any(ind)) {
+    stop("Please specify also: ", paste(args[ind], collapse = ", "))
+  }
+  
+  # test if chainring and sprocket are integers
+  ind <- vapply(list(chainring, sprocket), function(x) {
+    isTRUE(all.equal(x %% 2, 0))
+  }, logical(1))
+  if (!any(ind)) {
+    stop("Chainring and sprocket must be integers")
+  }
+  
+  # test if idler is 10 or 11
+  if (!idler %in% c(10, 11)) {
+    stop("The value of idler must be 10 or 11!")
+  }
+  
+  # test if chainring > sprocket
+  rat <- chainring / sprocket
+  if (rat < 1.5) {
+    message("The ratio of chainring and sprocket is rather small: ", rat)
+  }
+  
+  # some functions in the Internet also use floor
+  cl <- round(0.157 * cs + 0.5 * chainring + 0.5 * sprocket + 2)
   # check if cl is even, if not add 1 to make it even
   if (!isTRUE(all.equal(cl %% 2, 0))) {
     cl <- cl + 1
@@ -26,7 +55,7 @@ calc_chain <- function(cs = NULL, chainring = NULL, sprocket = NULL,
   }
   # one chain link corresponds to half an inch
   cl_cm <- round(cl * 2.54 / 2, 2)  
-  list(cl, cl_cm)
+  data.frame("links" = cl, "length" = cl_cm)
 }
 
 # chain length for Fixies:

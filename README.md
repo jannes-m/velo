@@ -6,7 +6,7 @@ velo
 
 velo is an R package which provides bicycle-related calculations frequently used by bike enthusiasts. Until now many of these functions are spread over the web, are unreliable mostly due to insufficient documentation and/or do not exist. The main goals of the velo-package are:
 
--   Bring together the most important bicycle-related calculations in a well-documented, transparent and reproducible manner (well, so far, there are just two functions, ...).
+-   Bring together the most important bicycle-related calculations in a well-documented, transparent and reproducible manner (well, so far, the package consists of four functions ...).
 
 -   In the future, RShiny should make the implemented functions interactively usable.
 
@@ -25,6 +25,6 @@ devtools::install_github("jannes-m/velo")
 TO DO
 -----
 
--   function to calculate the spoke length
--   function to calculate the chain length
+-   function calc\_chain also for Fixies
+-   function trail (Vorlauf, Dirk wants to implement it)
 -   implement functions in RShiny
