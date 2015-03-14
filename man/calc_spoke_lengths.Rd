@@ -69,6 +69,9 @@ for \eqn{flange_d = left or right flange diameter,
   \url{http://www.wheelpro.co.uk/support/spoke-length-proof.php} for an
   excellent mathematical proof, both in terms of explanation and depiction.
 }
+\note{
+The function is not applicable to straight pull spokes.
+}
 \examples{
 # Rigida Zac 2000 with 36 spoke holes
 # Shimano Deore LX FH-M580 (rear hub)
