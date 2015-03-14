@@ -44,6 +44,7 @@
 #' @author Jannes Muenchow
 #' @return The function returns a data.frame with one row and the columns 
 #'   \strong{left_length} and \strong{right_length} in mm.
+#' @note The function is not applicable to straight pull spokes.
 #' @export
 #' @references Roger Musson (2013): A professional guide to wheelbuilding. 6th 
 #'   Edition. \url{http://www.wheelpro.co.uk/}.
