@@ -7,14 +7,23 @@
 calc_trail(dia = NULL, rake = NULL, ha = NULL)
 }
 \arguments{
-\item{dia}{Diameter of the wheel plus tire (in mm).}
+\item{dia}{Diameter of the wheel including the tire [mm].}
 
-\item{rake}{Rake also known as fork offest (in mm).}
+\item{rake}{The rake, also known as fork offest [mm].}
 
-\item{ha}{Head angle in degrees.}
+\item{ha}{Head angle [degrees].}
+}
+\value{
+The function returns a numeric representing the trail [mm].
 }
 \description{
-Calculate the trail.
+Calculate the trail. For further information have a look at
+  \url{http://en.wikipedia.org/wiki/Bicycle_and_motorcyle_geometry}.
+}
+\details{
+\code{calc_trail} uses trigonometric functions to calculate the
+  trail. Please refer to \code{vignette("velo_trail", package = "velo")} for
+  a detailed description and mathematical proof.
 }
 \examples{
 calc_trail(dia = 700, rake = 58, ha = 73)

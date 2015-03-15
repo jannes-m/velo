@@ -1,9 +1,14 @@
 #' @title Calculate trail
-#' @description Calculate the trail. For further information have a look at en.wikipedia.org/wiki/bicycle_and_motorcyle_geometry
-#' @param dia Diameter of the wheel plus tire [mm].
-#' @param rake Rake also known as fork offest [mm].
+#' @description Calculate the trail. For further information have a look at
+#'   \url{http://en.wikipedia.org/wiki/Bicycle_and_motorcyle_geometry}.
+#' @param dia Diameter of the wheel including the tire [mm].
+#' @param rake The rake, also known as fork offest [mm].
 #' @param ha Head angle [degrees].
+#' @details \code{calc_trail} uses trigonometric functions to calculate the
+#'   trail. Please refer to \code{vignette("velo_trail", package = "velo")} for
+#'   a detailed description and mathematical proof.
 #' @author Dirk Haas, Jannes Muenchow
+#' @return The function returns a numeric representing the trail [mm].
 #' @export
 #' @examples 
 #' calc_trail(dia = 700, rake = 58, ha = 73)

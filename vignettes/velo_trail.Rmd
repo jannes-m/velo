@@ -9,8 +9,11 @@ vignette: >
   \usepackage[utf8]{inputenc}
 ---
 
+<figure align="center">
+ <img src = "figures/trail.png">
+ <figcaption>Fig. 1: Sides and angles to calculate the trail.</figcaption>
+ </figure>
 
-![alt text](http://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Bicycle_dimensions.svg/500px-Bicycle_dimensions.svg.png)
 
 
 Vignettes are long form documentation commonly included in packages. Because they are part of the distribution of the package, they need to be as compact as possible. The `html_vignette` output type provides a custom style sheet (and tweaks some options) to ensure that the resulting html is as small as possible. The `html_vignette` format:
