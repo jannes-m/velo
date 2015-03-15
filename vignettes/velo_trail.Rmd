@@ -11,7 +11,7 @@ vignette: >
 
 <figure align="center">
  <img src = "figures/trail.png">
- <figcaption>Fig. 1: Sides and angles to calculate the trail.</figcaption>
+ <figcaption>Fig. 1: Necessary sides and angles to calculate the trail. The wheel and the fork in the background were adapted from http://en.wikipedia.org/wiki/Bicycle_and_motorcycle_geometry.</figcaption>
  </figure>
 
 

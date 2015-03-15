@@ -1,6 +1,6 @@
 #' @title Calculate trail
 #' @description Calculate the trail. For further information have a look at
-#'   \url{http://en.wikipedia.org/wiki/Bicycle_and_motorcyle_geometry}.
+#'   \url{http://en.wikipedia.org/wiki/Bicycle_and_motorcycle_geometry}.
 #' @param dia Diameter of the wheel including the tire [mm].
 #' @param rake The rake, also known as fork offest [mm].
 #' @param ha Head angle [degrees].
