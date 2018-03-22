@@ -46,6 +46,24 @@ find_gcd <- function(x = NULL, y = NULL) {
   prod(facs)
 }
 
+# You could also use Euclid's algorithm to finde the greatest common divisor
+# is simpler, more elegant and should also be faster...
+# find_gcd <- function(x, y) {
+#   # find the divisor  
+#   divisor <- min(x, y)
+#   # find the dividend
+#   dividend <- max(x, y)
+#   # apply Euclid's algorithm
+#   repeat {
+#     remainder <- dividend %% divisor
+#     dividend <- divisor
+#     divisor <- remainder
+#     if (remainder == 0) break
+#   }
+#   dividend
+#   }
+# }
+
 
 #' @title Find multiplier
 #' @description Find lowest possible integer multiplier which yields an integer

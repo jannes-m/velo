@@ -1,16 +1,18 @@
 #' @title Optimal teeth combination (Fixie)
-#' @description \code{calc_fixie_teeth} calculates the optimal number of
+#' @description \code{calc_fixie_teeth} calculates the optimal number of 
 #'   chainring (front) and cog (rear) teeth for a given gear ratio.
 #' @param ratio The desired gear ratio given as a positive numeral.
 #' @param tol Tolerance around which the specified gear ratio might deviate with
 #'   0.1 as default.
-#' @param front Range of the number of chainring teeth given as an integer vector.
+#' @param front Range of the number of chainring teeth given as an integer
+#'   vector.
 #' @param rear Range of the number of cog teeth given as an integer vector.
-#' @param nrow An integer indicating the maximal number of rows which should be
-#' returned by the function.
+#' @param nrow An integer indicating the maximal number of rows which should be 
+#'   returned by the function.
 #' @return The function returns a dataframe with following columns:
 #' \enumerate{
-#' \item{\strong{front} The optimal number of chainring teeth (see \code{Details}).}
+#' \item{\strong{front} The optimal number of chainring teeth (see
+#'       \code{Details}).}
 #' \item{\strong{rear} The optimal number of cog teeth (see \code{Details}).}
 #' \item{\strong{ratio} The actual gear ratio.}
 #' \item{\strong{skid_1} The number of skid patches for single-legged skidders.
