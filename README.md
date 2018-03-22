@@ -2,15 +2,13 @@
 velo
 ====
 
-**velo** is an R package which provides bicycle-related calculations frequently used by bike enthusiasts. Until now many of these functions are spread over the web, are unreliable mostly due to insufficient documentation and/or do not exist. The main goals of the velo-package are:
+**velo** is an R package which provides bicycle-related calculations frequently used by bike enthusiasts. So far many of these functions are spread over the web. These are often unreliable and/or intransparent mostly due to insufficient documentation. The main goals of the velo-package are:
 
 -   Bring together the most important bicycle-related calculations in a well-documented, transparent and reproducible manner. So far, **velo** lets you compute:
-
-1.  chain lengths.
-2.  the optimal combination of teeths for fixie bikes.
-3.  spoke lenghts.
-4.  the trail.
-
+    1.  chain lengths.
+    2.  the optimal combination of teeths for fixie bikes.
+    3.  spoke lenghts.
+    4.  the trail.
 -   Make them interactively usable via RShiny Apps (see the sibling [velo\_apps](https://github.com/jannes-m/velo_apps) repository).
 
 You can install the latest development version from github with
