@@ -16,3 +16,4 @@ Imports:
     lazyeval,
     stringr,
     conf.design
+RoxygenNote: 6.0.1
