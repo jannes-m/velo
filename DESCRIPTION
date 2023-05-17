@@ -4,7 +4,7 @@ Title: An R package for bicycle-related calculations
 Version: 0.1
 Date: 2015-02-17
 Author: Jannes Muenchow
-Maintainer: <malnamlaja@gmx.de>
+Maintainer: <malnamalja@gmx.de>
 Description: velo is an R package which provides bicycle-related calculations
     which are frequently used by bike enthusiasts. However, many of these
     functions are spread over the web and/or do not exist.
